@@ -1,20 +1,23 @@
 import { gray, purple } from '@/app/styles/colors'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { useState } from 'react'
-import { TextInput, View } from 'react-native'
+import { TextInput, View, type ViewProps } from 'react-native'
 import { styles } from './styles'
 
-export function Input() {
+type InputProps = ViewProps & {
+  iconName: keyof typeof MaterialIcons.glyphMap
+}
+
+export function Input({ iconName, ...rest }: InputProps) {
   const [focused, setFocused] = useState(false)
+  
   return (
-    <View style={[styles.container, focused && { borderColor: purple.base }]}>
+    <View
+      style={[styles.container, focused && { borderColor: purple.base }]}
+      {...rest}
+    >
       <MaterialIcons
-        name='calendar-month'
-        size={20}
-        color={focused ? purple.base : gray[600]}
-      />
-      <MaterialIcons
-        name='attach-money'
+        name={iconName}
         size={20}
         color={focused ? purple.base : gray[600]}
       />

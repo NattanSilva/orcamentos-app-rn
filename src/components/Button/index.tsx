@@ -9,7 +9,7 @@ import { dangerStyles, primaryStyles, secondaryStyles } from './styles'
 
 type ButtonProps = TouchableOpacityProps & {
   variant?: 'primary' | 'secondary' | 'danger'
-  iconName: keyof typeof MaterialIcons.glyphMap
+  iconName?: keyof typeof MaterialIcons.glyphMap
   label?: string
 }
 
@@ -26,17 +26,25 @@ function getVariantStyles(variant: string) {
   }
 }
 
-export function Button({ variant = 'primary', iconName, label }: ButtonProps) {
+export function Button({
+  variant = 'primary',
+  iconName,
+  label,
+  ...rest
+}: ButtonProps) {
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
+      activeOpacity={variant === 'primary' ? 0.8 : 0.6}
       style={getVariantStyles(variant).container}
+      {...rest}
     >
-      <MaterialIcons
-        name={iconName}
-        size={24}
-        color={getVariantStyles(variant).label.color}
-      />
+      {!!iconName && (
+        <MaterialIcons
+          name={iconName}
+          size={16}
+          color={getVariantStyles(variant).label.color}
+        />
+      )}
       {!!label && <Text style={getVariantStyles(variant).label}>{label}</Text>}
     </TouchableOpacity>
   )

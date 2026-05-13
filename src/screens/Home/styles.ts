@@ -28,5 +28,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
+    marginBottom: 24,
+  },
+  empty: {
+    fontSize: 14,
+    color: gray[600],
+    textAlign: 'center',
   },
 })

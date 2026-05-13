@@ -1,6 +1,7 @@
-import { Home } from '@/screens/Home'
+import { Routes } from '@/routes'
 import { Lato_400Regular, Lato_700Bold } from '@expo-google-fonts/lato'
 import { useFonts } from 'expo-font'
+import 'react-native-gesture-handler'
 
 export function App() {
   const [loaded, error] = useFonts({
@@ -12,5 +13,5 @@ export function App() {
     return null
   }
 
-  return <Home />
+  return <Routes />
 }
